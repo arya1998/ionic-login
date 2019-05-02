@@ -1,7 +1,7 @@
 "use strict";
 const  express  =  require('express');
 const  bodyParser  =  require('body-parser');
-const cors = require('cors')
+const cors = require('cors');
 const  sqlite3  =  require('sqlite3').verbose();
 const  jwt  =  require('jsonwebtoken');
 const  bcrypt  =  require('bcryptjs');
@@ -10,7 +10,7 @@ const SECRET_KEY = "secretkey23456";
 
 const  app  =  express();
 const  router  =  express.Router();
-app.use(cors())
+app.use(cors());
 
 router.use(bodyParser.urlencoded({ extended:  false }));
 router.use(bodyParser.json());
@@ -25,19 +25,19 @@ const  createUsersTable  = () => {
         password text)`;
 
     return  database.run(sqlQuery);
-}
+};
 
 const  findUserByEmail  = (email, cb) => {
     return  database.get(`SELECT * FROM users WHERE email = ?`,[email], (err, row) => {
-            cb(err, row)
+            cb(err, row);
     });
-}
+};
 
 const  createUser  = (user, cb) => {
     return  database.run('INSERT INTO users (name, email, password) VALUES (?,?,?)',user, (err) => {
-        cb(err)
+        cb(err);
     });
-}
+};
 
 createUsersTable();
 
