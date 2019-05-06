@@ -51,4 +51,8 @@ export class AuthService {
     return this.authSubject.asObservable();
   }
 
+  isAuthenticated() {
+    return this.authSubject.value;
+  }
+
 }
